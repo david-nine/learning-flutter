@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hello_word/app_controller.dart';
+import 'package:hello_word/home_controller.dart';
 import 'package:hello_word/home_page.dart';
+import 'package:hello_word/list_view_page.dart';
 import 'package:hello_word/login_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -12,7 +14,7 @@ class AppWidget extends StatelessWidget {
         animation: AppController.instance,
         builder: (context, child) {
           return MaterialApp(
-              home: LoginPage(),
+              home: const ListViewPage(),
               theme: ThemeData(
                   primarySwatch: Colors.red,
                   brightness: AppController.instance.isDarkTheme

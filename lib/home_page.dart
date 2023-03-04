@@ -6,55 +6,58 @@ class HomePage extends StatefulWidget {
 
   @override
   State<HomePage> createState() {
-    return HomePageState();
+    return _HomePageState();
   }
 }
 
-class HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   int counter = 0;
   bool isDarkTheme = true;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // var controller = HomeController.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
-        actions: [CustomSwitcher()],
+        title: const Text('Home Page'),
+        actions: const [CustomSwitcher()],
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //Text("Counter ${controller.value}"),
             Text("Counter $counter"),
-            Container(
-              height: 10,
-            ),
-            CustomSwitcher(),
-            Container(
-              height: 50,
-            ),
-            Row(
+            const CustomSwitcher(),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+                
+                child: Row(
+
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  color: Colors.black,
-                ),
-                Container(
-                  width: 50,
-                  height: 50,
-                  color: Colors.black,
-                ),
-                Container(
-                  width: 50,
-                  height: 50,
-                  color: Colors.black,
-                )
+                for (var i = 0; i < 10; i++)
+                  Container(
+                    width: 50,
+                    height: 50,
+                    color: Colors.black,
+                    margin: const EdgeInsets.all(10),
+                  ),
               ],
-            ),
+            )),
             Container(
               height: 50,
             )
@@ -62,8 +65,9 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
+            //controller.increment();
             setState(() {
               counter++;
             });
@@ -77,10 +81,12 @@ class CustomSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Switch(
-        value: AppController.instance.isDarkTheme,
-        onChanged: (value) {
-          AppController.instance.changeTheme();
-        });
+    return Container(
+        margin: const EdgeInsets.all(20),
+        child: Switch(
+            value: AppController.instance.isDarkTheme,
+            onChanged: (value) {
+              AppController.instance.changeTheme();
+            }));
   }
 }
