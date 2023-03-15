@@ -16,6 +16,11 @@ class _ListViewPageState extends State<ListViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/home');
+              },
+              icon: const Icon(Icons.home)),
           title: const Text('List view'),
         ),
         body: Padding(
@@ -24,13 +29,18 @@ class _ListViewPageState extends State<ListViewPage> {
             children: [
               Row(
                 children: [
-                  Expanded(child: TextField(controller: controller,)),
-                  IconButton(onPressed: () {
-                    setState(() {
-                      list.add(controller.text);
-                    });
-                    controller.clear();
-                  }, icon: const Icon(Icons.add))
+                  Expanded(
+                      child: TextField(
+                    controller: controller,
+                  )),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          list.add(controller.text);
+                        });
+                        controller.clear();
+                      },
+                      icon: const Icon(Icons.add))
                 ],
               ),
               Expanded(

@@ -39,11 +39,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(onPressed: () {
                 if (email.contains('@') && password == '123') {
-                  print(true);
-                } else {
-                  print(false);
+                  Navigator.of(context).pushReplacementNamed('/home');
                 }
-              }, child: const Text('Log on'))
+              }, child: const Text('Log in'))
             ],
           ),
         ),
